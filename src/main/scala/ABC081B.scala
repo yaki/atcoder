@@ -53,11 +53,7 @@ object ABC081B extends App {
   def allHalf(ints: Array[Int]): Array[Int] =
     ints.map(_ / 2)
 
-  def isOdd(int: Int): Boolean =
-    int.toString.last.toInt % 2 match {
-      case 0 => false
-      case _ => true
-    }
+  def isOdd(int: Int): Boolean = int % 2 != 0
 
   def st: State[Array[Int], Int] = State { initialState =>
     initialState.exists(isOdd) match {
@@ -72,8 +68,12 @@ object ABC081B extends App {
     s3 <- st
   } yield s3
 
-  val stream: Stream[State[Array[Int], Int]] = Stream.continually(st)
-  val sequence: State[Array[Int], Stream[Int]] = stream.sequence
+  val stream: Stream[State[Array[Int], Int]]   = Stream.continually(st)
+//  val sequence: State[Array[Int], Stream[Int]] = stream.sequence
+
+//  stream.seq
+
+//  value.run
 
   value.run(ints).value._1.foreach(println)
 
