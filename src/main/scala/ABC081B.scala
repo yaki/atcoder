@@ -70,9 +70,7 @@ object ABC081B extends App {
 
   val stream: Stream[State[Array[Int], Int]]   = Stream.continually(st)
 //  val sequence: State[Array[Int], Stream[Int]] = stream.sequence
-
 //  stream.seq
-
 //  value.run
 
   value.run(ints).value._1.foreach(println)
